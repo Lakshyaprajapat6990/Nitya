@@ -1,0 +1,94 @@
+const chadhavaService = require("../services/chadhavaService");
+const chadhavaModel = require("../models/Chadhava");
+const { connectDB } = require("../config/db");
+
+class ChadhavaController {
+  async create(req, res) {
+    try {
+      // Ensure database is connected before operation
+      await connectDB();
+      
+      console.log("Chadhava create - req.body:", JSON.stringify(req.body));
+      console.log("Chadhava create - Content-Type:", req.headers['content-type']);
+      
+      // Filter out undefined/null values to avoid validation errors
+      const sanitizedBody = {};
+      Object.keys(req.body).forEach((key) => {
+        if (req.body[key] !== undefined && req.body[key] !== null) {
+          // Convert chadhava to number if it's a string
+          if (key === 'chadhava') {
+            const numValue = Number(req.body[key]);
+            sanitizedBody[key] = isNaN(numValue) ? null : numValue;
+          } else {
+            sanitizedBody[key] = req.body[key];
+          }
+        }
+      });
+      
+      console.log("Chadhava sanitizedBody:", JSON.stringify(sanitizedBody));
+      
+      const chadhava = await chadhavaModel.create(sanitizedBody);
+      res.status(201).json(chadhava);
+    } catch (err) {
+      console.error("Chadhava create error:", err);
+      console.error("Error details:", err.stack);
+      res.status(400).json({ error: err.message, fullError: err.toString() });
+    }
+  }
+
+  async getAll(req, res) {
+    try {
+      const chadhavas = await chadhavaService.getAllChadhavas(req.query);
+      res.json(chadhavas);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async getById(req, res) {
+    try {
+      const chadhava = await chadhavaService.getChadhavaById(req.params.id);
+      if (!chadhava) return res.status(404).json({ error: "Not found" });
+      res.json(chadhava);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  async update(req, res) {
+    try {
+      const chadhava = await chadhavaService.updateChadhava(
+        req.params.id,
+        req.body
+      );
+      if (!chadhava) return res.status(404).json({ error: "Not found" });
+      res.json(chadhava);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const chadhava = await chadhavaService.deleteChadhava(req.params.id);
+      if (!chadhava) return res.status(404).json({ error: "Not found" });
+      res.json({ message: "Deleted successfully" });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  async deleteId(req, res) {
+    try {
+      const chadhava = await chadhavaService.deleteID(req.params.id);
+      if (!chadhava) {
+        return res.status(404).json({ message: "Chadhava not found" });
+      }
+      res.json({ message: "Chadhava deleted successfully", pooja });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+}
+
+module.exports = new ChadhavaController();
