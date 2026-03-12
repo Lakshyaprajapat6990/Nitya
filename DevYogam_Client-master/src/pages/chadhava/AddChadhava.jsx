@@ -20,7 +20,7 @@ import { UploadItemImg } from "../../services/UploadItemImg";
 import { CreatePoojaFile } from "../../services/CreatePoojaFile";
 import { useNavigate } from "react-router-dom";
 
-const MAX_LOGOS = 10;
+const MAX_LOGOS = 5;
 
 const initialValues = {
   title: "",
