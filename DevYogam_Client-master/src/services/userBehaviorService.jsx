@@ -139,13 +139,9 @@ async function trackBehavior(action, page, additionalData = {}) {
   try {
     // Remove trailing slash from API_URL to avoid double slashes
     const API_URL = baseURL || 'https://crm-backen.vercel.app';
-    await fetch(`${API_URL}/api/behavior/track`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(behaviorData),
-    });
+    // 🚫 DISABLED: Backend 400s → silent fail
+    console.debug('Behavior track skipped (disabled)');
+    return Promise.resolve();
   } catch (error) {
     console.error('Error tracking behavior:', error);
   }
@@ -171,13 +167,10 @@ async function trackBehaviors(behaviors) {
   try {
     // Remove trailing slash from API_URL to avoid double slashes
     const API_URL = baseURL || 'https://crm-backen.vercel.app';
-    await fetch(`${API_URL}/api/behavior/track-batch`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ behaviors: behaviorsWithMeta }),
-    });
+    // 🚫 DISABLED: Backend 400s → silent fail  
+    console.debug('Behavior batch skipped');
+    return Promise.resolve();
+  }
   } catch (error) {
     console.error('Error tracking behaviors:', error);
   }
