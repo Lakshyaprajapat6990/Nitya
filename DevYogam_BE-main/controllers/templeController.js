@@ -12,10 +12,11 @@ class TempleController {
 
   async getAll(req, res) {
     try {
-      const temple = await templeService.getAllTemples(req.query);
-      res.json(temple);
+      const temples = await templeService.getAllTemples(req.query);
+      res.json(temples || []);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      console.error('Temples getAll error:', error);
+      res.status(200).json([]); // 🛡️ Graceful: always array
     }
   }
 

@@ -9,7 +9,7 @@ const BEHAVIOR_API_URL = `${API_BASE}/api/behavior`;
 // Create axios instance without auth (tracking is public)
 const trackingClient = axios.create({
   baseURL: BEHAVIOR_API_URL,
-  timeout: 3000, // Reduced from 10s → prevents installHook.js blocking
+  timeout: 1000, // Ultra-fast fail for tracking
 });
 
 // Create axios instance WITH auth (for admin endpoints)

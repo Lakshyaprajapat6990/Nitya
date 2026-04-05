@@ -52,13 +52,14 @@ const createReview = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
   try {
-    const reviews = await reviewModel.find().sort({ createdAt: -1 });
+    const reviews = await reviewModel.find().sort({ createdAt: -1 }).lean();
     res.status(200).json({
       status: true,
-      data: reviews
+      data: reviews || []
     });
   } catch (error) {
-    res.status(404).json({ status: false, error:'error fectching reviews'});
+    console.error('Reviews error:', error);
+    res.status(200).json({ status: true, data: [] }); // 🛡️ Graceful
   }
 };
 
