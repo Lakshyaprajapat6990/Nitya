@@ -9,13 +9,13 @@ const BEHAVIOR_API_URL = `${API_BASE}/api/behavior`;
 // Create axios instance without auth (tracking is public)
 const trackingClient = axios.create({
   baseURL: BEHAVIOR_API_URL,
-  timeout: 10000,
+  timeout: 3000, // Reduced from 10s → prevents installHook.js blocking
 });
 
 // Create axios instance WITH auth (for admin endpoints)
 const authClient = axios.create({
   baseURL: BEHAVIOR_API_URL,
-  timeout: 10000,
+  timeout: 5000, // Admin analytics can afford slight delay
   withCredentials: true,
   credentials: "include",
 });
@@ -63,6 +63,11 @@ function getContactId() {
 
 // Track a user action
 export async function trackAction(action, metadata = {}) {
+  // 🔥 NON-BLOCKING: Fire-and-forget → no await needed by callers
+  if (typeof navigator !== 'undefined' && !navigator.onLine) {
+    return Promise.resolve({ skipped: 'offline' });
+  }
+  
   const sessionId = getSessionId();
   const userId = getUserId();
   const contactId = getContactId();

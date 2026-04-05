@@ -27,9 +27,17 @@ export default function Pooja() {
   const getPooja = async () => {
     setLoading(true);
     const res = await GetAllPoojasAPI();
+    
+    // 🛡️ FIX: Handle non-array/error responses
+    if (!res || !Array.isArray(res)) {
+      console.warn('Pooja API returned non-array:', res);
+      setPoojaData([]);
+      setLoading(false);
+      return;
+    }
 
-    // Map data based on language
-    const filtered = await res?.map((p) => {
+    // Map data based on language safely
+    const filtered = res.map((p) => {
       const lang = language === "hi" ? "Hi" : "";
 
       // Helper to pick lang field or fallback
@@ -147,10 +155,12 @@ export default function Pooja() {
     </Grid>
   ));
 
-  const visiblePoojas =
-    userRole === "admin"
+  // 🛡️ Safe array handling
+  const visiblePoojas = Array.isArray(poojaData)
+    ? userRole === "admin"
       ? poojaData
-      : poojaData.filter((item) => !item.isDeleted);
+      : poojaData.filter((item) => !item.isDeleted)
+    : [];
   return (
     <GlobalCssStyles>
       <Box sx={{ padding: "2%", width: "90%", margin: "auto" }}>

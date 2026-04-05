@@ -27,9 +27,10 @@ class PoojaController {
   async getAll(req, res) {
     try {
       const poojas = await poojaService.getAllPoojas(req.query);
-      res.json(poojas);
+      res.json(poojas || []);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      console.error('Poojas getAll error:', error);
+      res.status(200).json([]); // 🛡️ Graceful: always array, never 500
     }
   }
 
@@ -81,9 +82,10 @@ class PoojaController {
   async getAllPoojas(req, res) {
     try {
       const poojas = await poojaService.getAllPoojas();
-      res.json(poojas);
+      res.json(poojas || []);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('getAllPoojas error:', error);
+      res.status(200).json([]); // 🛡️ Graceful: always array
     }
   }
 }

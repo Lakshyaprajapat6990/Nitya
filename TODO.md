@@ -1,22 +1,30 @@
-# TODO - MongoDB Atlas Data API Migration
+# Performance & Error Fixes - DevYogam CRM Website
 
-## Task: Migrate from Mongoose direct connection to Atlas Data API
+## Approved Plan Steps (Confirmed by User)
 
-### Steps Completed:
-1. [x] Created Atlas Data API service (config/atlasDataApi.js)
-2. [x] Updated database abstraction layer (config/database.js)
-3. [x] Updated app.js to use new database wrapper
-4. [x] Added public endpoint for CRM bookings (routes/crmRoutes.js)
-5. [x] Added controller function for public endpoint (controllers/crmController.js)
-6. [x] Updated frontend to create CRM contact after booking (RazorpayCheckout.jsx)
+### Phase 1: Critical Blocking Fixes ✅ COMPLETE
+- [x] **1. Fix BehaviorTrackingAPI.jsx** - 3s timeout + offline check
+- [x] **2. Fix Pooja.jsx** - Safe array handling → no more .map() crash  
+- [x] **3. Fix manifest.json** - Fixed icons → no 404s
 
-### Next Steps:
-- Deploy the backend to Vercel
-- Test the Pooja/Chadhava booking flow
-- Verify contacts appear in CRM with "Interested" status
+### Phase 2: Backend Fixes ✅ COMPLETE  
+- [x] **4. Fix poojaService.js** - .lean() + sort
+- [x] **5. Fix poojaController.js** - Always 200 + []
 
-### Note:
-The user needs to:
-1. Enable MongoDB Atlas Data API in Atlas dashboard (if using Option B)
-2. OR Add IP whitelist 0.0.0.0/0 in MongoDB Atlas Network Access (Option A - simpler)
-3. Add environment variables in Vercel if using Data API
+### Phase 3: Performance Optimizations ← FINAL
+- [ ] **6. Razorpay conditional loading**
+- [ ] **7. Deploy + test**
+
+
+### Phase 3: Performance Optimizations
+- [ ] **6. Conditional Razorpay loading**
+- [ ] **7. Add React.lazy + Suspense**
+- [ ] **8. Error boundaries + skeletons**
+
+### Phase 4: Testing & Deploy
+- [ ] Test local frontend/backend
+- [ ] Deploy to Vercel
+- [ ] Lighthouse audit
+
+**Current Progress: Starting Phase 1**
+

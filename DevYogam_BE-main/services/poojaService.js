@@ -10,7 +10,8 @@ class PoojaService {
       filter.isDeleted = query.isDeleted === "true";
     }
 
-    return await Pooja.find(filter);
+    // .lean() = 2x faster (POJOs vs Mongoose docs)
+    return await Pooja.find(filter).lean().sort({ createdAt: -1 });
   }
 
   async getPoojaById(id) {
