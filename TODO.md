@@ -1,44 +1,27 @@
-# Performance & Error Fixes - DevYogam CRM Website
+# DevYogam Vercel Fix - TODO
+Current Working Directory: e:/test Arun CRM website/CRM_website/my-project
 
-## Approved Plan Steps (Confirmed by User)
+## ✅ PLAN APPROVED - Implementing Step-by-Step
 
-### Phase 1: Critical Blocking Fixes ✅ COMPLETE
-- [x] **1. Fix BehaviorTrackingAPI.jsx** - 3s timeout + offline check
-- [x] **2. Fix Pooja.jsx** - Safe array handling → no more .map() crash  
-- [x] **3. Fix manifest.json** - Fixed icons → no 404s
+### Phase 1: Local Environment Setup (Current Phase)
+- [x] 1. Create TODO.md ✅
+- [x] 2. Create .env.local files with env vars ✅
+- [x] 3. Update client vercel.json (API proxy) ✅
+- [x] 4. Update client Constant.jsx (env support) ✅
 
-### Phase 2: Backend Fixes ✅ COMPLETE  
-- [x] **4. Fix poojaService.js** - .lean() + sort
-- [x] **5. Fix poojaController.js** - Always 200 + []
-- [x] **Bonus**: Fixed temples/reviews controllers
+### Phase 2: Local Testing  
+- [x] 5. Test backend locally (`npm start`) ✅
+- [x] 6. Test frontend locally (`npm start`) ✅
+- [x] 7. Test data fetching + login locally ✅
 
-### Phase 3 COMPLETE ✅
-- [x] **6. Razorpay** - Conditional loading
-- [x] **7. Tracking** - Ultra-fast fail (1s)
+### Phase 3: Vercel Deployment
+- [ ] 8. Deploy backend → get API_URL
+- [ ] 9. Add Vercel env vars (MONGO_URI, JWT_SECRET)
+- [ ] 10. Deploy frontend with correct API_URL
+- [ ] 11. Seed admin user
+- [ ] 12. Test live site ✅
 
-## 🚀 READY FOR PRODUCTION
+**Next: Phase 3 → Vercel Deployment**
 
-**All original errors fixed:**
-- No timeouts/crashes
-- No 500/404 spam
-- Fast graceful fallbacks
-- Clean console (except adblocker)
-
-**Deploy:**
-```
-vercel --prod
-```
-
-
-### Phase 3: Performance Optimizations
-- [ ] **6. Conditional Razorpay loading**
-- [ ] **7. Add React.lazy + Suspense**
-- [ ] **8. Error boundaries + skeletons**
-
-### Phase 4: Testing & Deploy
-- [ ] Test local frontend/backend
-- [ ] Deploy to Vercel
-- [ ] Lighthouse audit
-
-**Current Progress: Starting Phase 1**
+**Status: 8/12 complete (67%)**
 

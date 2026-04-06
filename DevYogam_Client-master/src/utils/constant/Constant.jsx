@@ -1,6 +1,6 @@
 // Production backend URL - uses environment variable for Vercel deployment
 // Falls back to localhost for local development
-export const baseURL = (process.env.REACT_APP_API_BASE_URL || 'https://crm-backen.vercel.app').replace(/\/$/, '');
+export const baseURL = (process.env.REACT_APP_API_BASE_URL || '/api').replace(/\/$/, '');
 
 export const reviewsData = [
   {

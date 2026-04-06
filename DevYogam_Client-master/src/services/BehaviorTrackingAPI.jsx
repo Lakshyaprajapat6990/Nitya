@@ -3,7 +3,7 @@ import { getUtmForTracking } from "../utils/utmTracker";
 import { baseURL } from "../utils/constant/Constant";
 
 // Use environment variable for API URL, remove trailing slash to avoid double slashes
-const API_BASE = baseURL || 'https://crm-backen.vercel.app';
+const API_BASE = baseURL;
 const BEHAVIOR_API_URL = `${API_BASE}/api/behavior`;
 
 // Create axios instance without auth (tracking is public)
