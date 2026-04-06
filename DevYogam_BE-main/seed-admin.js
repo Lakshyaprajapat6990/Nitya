@@ -23,7 +23,7 @@ const admin = new User({
     await admin.save();
     console.log('✅ Admin created successfully!');
     console.log('Email: admin@example.com');
-    console.log('Password: admin123');
+    console.log('Password: Aadmin123@');
     process.exit(0);
   } catch (error) {
     console.error('❌ Seed error:', error.message);

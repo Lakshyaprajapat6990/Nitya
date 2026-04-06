@@ -149,7 +149,7 @@ router.delete('/:id', userController.deleteUser);
  *               password:
  *                 type: string
  *                 format: password
- *                 example: admin123
+ *                 example: Aadmin123@
  *     responses:
  *       200:
  *         description: Login successful, returns JWT token

@@ -25,7 +25,7 @@ async function seedAdmin() {
 
     await admin.save();
     console.log('✅ Admin created!');
-    console.log('Login: admin@example.com / admin123');
+    console.log('Login: admin@example.com / Aadmin123@');
     mongoose.connection.close();
   } catch (error) {
     console.error('❌ Error:', error.message);
