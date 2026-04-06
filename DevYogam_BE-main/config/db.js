@@ -35,12 +35,13 @@ const connectDB = async () => {
     
     // Connect with optimized options for serverless
     await mongoose.connect(mongoURI, {
-      serverSelectionTimeoutMS: 15000, // 15 second timeout for serverless
-      socketTimeoutMS: 45000,
-      maxPoolSize: 10,
-      minPoolSize: 1,
-      maxIdleTimeMS: 30000,
-      connectTimeoutMS: 15000,
+serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 10000,
+      bufferMaxEntries: 0,
+      maxPoolSize: 1,
+      minPoolSize: 0,
+      connectTimeoutMS: 5000,
+      bufferCommands: false,
     });
     
     console.log('✅ MongoDB connected successfully');
